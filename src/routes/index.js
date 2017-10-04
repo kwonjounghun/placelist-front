@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Home, MyPage, PlaceList } from '../components/pages';
+import { Pages, Authentication} from '../components';
+import PrivateRoute from '../components/Authentication/ProtectedRoute'
 
 class Router extends Component {
     render() {
         return (
             <div>
                 <Switch>
-                    <Route exact path="/" component={Home}/>
-                    <Route exact path="/MyPage" component={MyPage}/>
-                    <Route exact path="/PlaceList" component={PlaceList}/>
+                    <PrivateRoute path="/Pages" component={Pages}/>
+                    <Route path="/Auth" component={Authentication}/>
                 </Switch>
             </div>
         )
     }
 }
+
 
 export default Router;

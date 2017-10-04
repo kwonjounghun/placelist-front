@@ -1,2 +1,2 @@
-export { default as Header } from './Header';
-export { default as LoginModal } from './Modals';
+export { default as Pages } from './pages';
+export { default as Authentication } from './Authentication';
