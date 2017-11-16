@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getLogoutsRequest } from '../../actions/Authentication'
+import { getLogoutsRequest } from 'actions/Authentication'
 const $ = window.$;
 
 class Header extends Component {
@@ -15,7 +15,6 @@ class Header extends Component {
             sideNav: true,
             sideNavStyle: false
         };
-        console.log(window.innerWidth);
     }
 
     sideNavToggle() {
@@ -32,7 +31,6 @@ class Header extends Component {
     updateDimensions() {
         if (window.innerWidth < 993) {
             if (this.state.sideNav === false) {
-                console.log("시작");
                 this.setState({ sideNav: true });
             }
         } else {
@@ -64,9 +62,7 @@ class Header extends Component {
 
     componentDidMount() {
         // component가 만들어지고 첫 렌더링이 완료되었을때 실행할 코드
-        // 모달을 초기화
-        // 모달은 components/Modals 디렉토리에 정의되어있다.
-        $('#modal1').modal();
+        
         // resize event를 만들어줌
         window.addEventListener("resize", this.updateDimensions);
         // updateDimensions를 한번 실행시킴 초기 state.sideNav값이 true이지만 처음실행하는 디바이스가 웹인지 모바일인지 구분하기 위해서 resize함수를 한번 실행시킴
@@ -75,7 +71,6 @@ class Header extends Component {
         this.usesideNavFuc();
     }
     componentDidUpdate(prevProps, prevState) {
-        console.log("다시");
         // 초기 디바이스가 넓이가 993보다 작은지를 비교하여 작다면 sideNavToggle 함수를 실행
         this.usesideNavFuc();
     }
@@ -84,13 +79,14 @@ class Header extends Component {
     }
 
     handleLogout() {
-        console.log(this.props);
         return this.props.getLogoutsRequest().then(
             () => {
-                console.log("header userInfo :", this.props.userInfo);
                 let userInfo = this.props.userInfo;
                 document.cookie = 'userInfo=' + btoa(JSON.stringify(userInfo));
-
+                // 비동기 안에 component의 this가 바인딩되어잇지 않기때문에 this.props.history.push를 사용할 수 없다.
+                // 때문에 window객체의 history를 이용하여 페이지 이동을 시킨다.
+                // 로그아웃이되며 기존의 데이터의 유실이 상관 없기때문에 새로고침이 되어도 상관없을 듯 하다
+                window.history.go('/auth/login');
             }
         );
     }
@@ -100,15 +96,15 @@ class Header extends Component {
         // 웹이냐 모바일이냐에 따라서 class와 id가 달라지기때문에 this.state.sideNav를 이용하여 분기를 만듬
         let listItem = (
             <ul className={this.state.sideNav ? 'side-nav' : 'right hide-on-med-and-down'} id={this.state.sideNav ? "mobile-demo" : ""} >
-                <li><NavLink to="/Pages/PlaceList" activeClassName="active">가고싶은 곳</NavLink></li>
-                <li><NavLink to="/Pages/MyPage" activeClassName="active">마이페이지</NavLink></li>
+                <li><NavLink to="/PlaceList" activeClassName="active">가고싶은 곳</NavLink></li>
+                <li><NavLink to="/MyPage" activeClassName="active">마이페이지</NavLink></li>
                 <li><a href="#" onClick={this.handleLogout}>로그아웃</a></li>
             </ul>
         )
         return (
             <nav>
                 <div className="nav-wrapper">
-                    <NavLink to="/Pages/" className="brand-logo">placeList</NavLink>
+                    <NavLink to="/" className="brand-logo">placeList</NavLink>
                     <a href="#" onClick={this.sideNavToggle} data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
                     {listItem}
                 </div>

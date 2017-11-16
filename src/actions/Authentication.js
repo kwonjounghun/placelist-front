@@ -38,7 +38,7 @@ export function getStatusRequest(token) {
         dispatch(getStatus());
         return axios.get('http://localhost:7777/api/user/check', { headers: { 'x-access-token': token, 'Content-Type': 'application/json' } })
             .then((response) => {
-                dispatch(getStatusSuccess(response.data.info.userEmail));
+                return dispatch(getStatusSuccess(response.data.info.userEmail, token));
             }).catch((error) => {
                 dispatch(getStatusFailure());
             });
@@ -51,11 +51,11 @@ export function getStatus() {
     };
 }
 
-export function getStatusSuccess(userEmail) {
-    console.log("success:", userEmail);
+export function getStatusSuccess(userEmail, token) {
     return {
         type: types.AUTH_GET_STATUS_SUCCESS,
-        userEmail
+        userEmail : userEmail,
+        token : token
     };
 }
 
@@ -63,6 +63,18 @@ export function getStatusFailure() {
     return {
         type: types.AUTH_GET_STATUS_FAILURE
     };
+}
+
+export function getStatusValueFunc(){
+    return (dispatch) => {
+        return Promise.resolve(dispatch(getStatusValue()));        
+    }
+}
+
+export function getStatusValue(){
+    return {
+        type: types.AUTH_GET_STATUS_VALUE
+    }
 }
 
 export function getLogoutsRequest() {

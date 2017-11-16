@@ -1,2 +1,2 @@
-export { default as Pages } from './pages';
-export { default as Authentication } from './Authentication';
+export { default as Pages } from 'components/pages';
+export { default as Authentication } from 'components/Authentication';

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { loginRequest } from '../../../actions/Authentication';
+import { loginRequest } from 'actions/Authentication';
 import { connect } from 'react-redux';
 const Materialize = window.Materialize;
 const $ = window.$;
@@ -29,13 +29,14 @@ class Login extends Component {
             () => {
                 if(this.props.status === "SUCCESS") {
                     // create session data
-                    console.log("userInfo: ", this.props.userInfo);
                     let userInfo = this.props.userInfo;
 
                     document.cookie = 'userInfo=' + btoa(JSON.stringify(userInfo));
+                    // window.sessionStorage.setItem('userInfo', btoa(JSON.stringify(userInfo)));
+                    
 
                     Materialize.toast('Welcome, ' + id + '!', 2000);
-                    let location = "/pages/home";
+                    let location = "/";
                     this.props.history.push(location);
                 } else {
                     let $toastContent = $('<span style="color: #FFB4BA">Incorrect username or password</span>');
@@ -46,7 +47,9 @@ class Login extends Component {
                 }
             }
         );
+        
     }
+    
     
     render() {
         return (

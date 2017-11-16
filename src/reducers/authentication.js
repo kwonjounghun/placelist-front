@@ -1,4 +1,4 @@
-import * as types from '../actions/AcionTypes';
+import * as types from 'actions/AcionTypes';
 import update from 'react-addons-update';
 
 const initialState = {
@@ -50,8 +50,9 @@ export default function authentication(state, action) {
         case types.AUTH_GET_STATUS_SUCCESS:
             return update(state, {
                 status: {
-                    valid: { $set: true },
-                    currentUser: { $set: action.userEmail }
+                    token: { $set: action.token },
+                    currentUser: { $set: action.userEmail },
+                    valid: { $set: true }
                 }
             });
         case types.AUTH_GET_STATUS_FAILURE:
@@ -70,6 +71,8 @@ export default function authentication(state, action) {
                     currentUser: { $set: '' }
                 }
             });
+        case types.AUTH_GET_STATUS_VALUE:
+            return state;
         default:
             return state;
     }

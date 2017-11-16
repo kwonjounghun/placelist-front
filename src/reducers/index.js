@@ -1,7 +1,11 @@
-import authentication from './authentication';
+import authentication from 'reducers/authentication';
+import placesearch from 'reducers/placesearch';
+import placeList from 'reducers/placeList';
 
 import { combineReducers } from 'redux';
 
 export default combineReducers({
-    authentication
+    authentication,
+    placesearch,
+    placeList
 });
