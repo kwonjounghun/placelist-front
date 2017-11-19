@@ -6,7 +6,9 @@ import MyListComponent from 'components/pages/MyListComponent';
 class App extends React.Component {
     render(){
         return (
-            <MyListComponent>홈페이지</MyListComponent>
+            <div>
+                <MyListComponent>홈페이지</MyListComponent>
+            </div>
         );
     }
 }
