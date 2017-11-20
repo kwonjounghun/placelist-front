@@ -1,8 +1,16 @@
 import React from 'react';
+import RegisterFromContainer from 'containers/RegisterFromContainer';
 
-const RegisterTemplate = ()=>{
+
+const RegisterTemplate = ({isSignUpPage})=>{
+    const registTitle = {
+        textAlign: 'center'
+    }
     return (
-        <div>Register</div>
+        <div>
+            <h1 style={registTitle}>{isSignUpPage? "SIGN UP" : "SIGN IN" }</h1>
+            <RegisterFromContainer isSignUpPage={isSignUpPage}/>
+        </div>
     );
 };
 
