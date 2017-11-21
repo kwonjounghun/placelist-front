@@ -2,7 +2,7 @@ import React from 'react';
 import RegisterTemplate from 'components/templates/RegisterTemplate';
 
 
-const RegisterPage = ({match}) => {
+const RegisterPage = ({match, history}) => {
     const ObjCenter = {
         justifyContent: 'center',
         minHeight: '100vh',

@@ -5,7 +5,9 @@ import HeaderContainer from 'containers/HeaderContainer'
 const MyListPage = ()=>{
     return (
         <div>
-            <PageTemplate name="page" Header={<HeaderContainer/>}></PageTemplate>
+            <PageTemplate name="page" Header={<HeaderContainer/>}>
+                <div className="container">MyListPage</div>
+            </PageTemplate>
         </div>
     );
 };

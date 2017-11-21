@@ -1,21 +1,26 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import requiresAuth from 'containers/requiresAuth';
 
 import MyListPage from 'components/pages/MyListPage';
+import MyPage from 'components/pages/MyPage';
 import RegisterPage from 'components/pages/RegisterPage';
+import { ConnectedRouter } from 'react-router-redux';
+
+
 
 class App extends React.Component {
     render() {
         return (
-            <BrowserRouter>
+            <ConnectedRouter history={this.props.ReduxHistory}>
                 <Switch>
                     <Route path="/signup" component={RegisterPage} />
                     <Route path="/signin" component={RegisterPage} />
-                    <Route path="/" component={MyListPage} />
+                    <Route exact path="/MyPage" component={requiresAuth(MyPage)}/>
+                    <Route exact path="/" component={requiresAuth(MyListPage)}/>
                 </Switch>
-            </BrowserRouter>
+            </ConnectedRouter>
         );
     }
 }
-
 export default App;

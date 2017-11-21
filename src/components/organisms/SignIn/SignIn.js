@@ -4,22 +4,9 @@ import { Link } from 'react-router-dom';
 class SignIn extends React.Component {
     constructor(props){
         super(props);
-        this.state={
-            userEmail: "",
-            password: ""
-        }
-        this.LoginFormHandle = this.LoginFormHandle.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        
     };
-    LoginFormHandle (e) {
-        e.preventDefault();
-        this.props.loginRequest(this.state.userEmail, this.state.password);
-    };
-    handleChange(e) {
-        let nextState = {};
-        nextState[e.target.name] = e.target.value;
-        this.setState(nextState);
-    };
+    
     render() {
         const textCenter = {
             textAlign: "center",
@@ -27,16 +14,16 @@ class SignIn extends React.Component {
         };
         return (
             <div>
-                <form onSubmit={this.LoginFormHandle}>
+                <form onSubmit={this.props.SignInFormHandle}>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input placeholder="userEmail" id="userEmail" name="userEmail" type="text" className="validate" value={this.state.userEmail} onChange={this.handleChange}/>
+                            <input placeholder="userEmail" id="userEmail" name="userEmail" type="text" className="validate" value={this.props.SignInState.userEmail} onChange={this.props.handleChange}/>
                             <label htmlFor="userEmail">userEmail</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s12">
-                            <input placeholder="password" id="password" name="password" type="password" className="validate" value={this.state.password} onChange={this.handleChange}/>
+                            <input placeholder="password" id="password" name="password" type="password" className="validate" value={this.props.SignInState.password} onChange={this.props.handleChange}/>
                             <label htmlFor="password">password</label>
                         </div>
                     </div>

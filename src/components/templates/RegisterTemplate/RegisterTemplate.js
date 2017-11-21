@@ -2,7 +2,7 @@ import React from 'react';
 import RegisterFromContainer from 'containers/RegisterFromContainer';
 
 
-const RegisterTemplate = ({isSignUpPage})=>{
+const RegisterTemplate = ({isSignUpPage, push})=>{
     const registTitle = {
         textAlign: 'center'
     }

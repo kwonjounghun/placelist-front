@@ -11,6 +11,12 @@ const SignUp = () => {
             <form>
                 <div className="row">
                     <div className="input-field col s12">
+                        <input placeholder="userName" id="userName" type="text" className="validate" />
+                        <label htmlFor="userName">userName</label>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="input-field col s12">
                         <input placeholder="userEmail" id="userEmail" type="text" className="validate" />
                         <label htmlFor="userEmail">userEmail</label>
                     </div>
