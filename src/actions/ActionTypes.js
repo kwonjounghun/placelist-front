@@ -18,3 +18,9 @@ export const CHECK_TOKEN_FAILURE = "CHECK_TOKEN_FAILURE";
 
 //SIGN_OUT
 export const SIGN_OUT = "SIGN_OUT";
+
+
+//GET_MY_LIST
+export const GET_MY_LIST = "GET_MY_LIST";
+export const GET_MY_LIST_SUCCESS = "GET_MY_LIST_SUCCESS";
+export const GET_MY_LIST_FAILURE = "GET_MY_LIST_FAILURE";
