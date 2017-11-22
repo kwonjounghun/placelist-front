@@ -35,7 +35,7 @@ export default function authentication(state, action) {
                 },
                 status: {
                     isLoggedIn: { $set: true },
-                    token: {$set: action.token}
+                    token: { $set: action.token }
                 }
             });
         case types.AUTH_LOGIN_FAILURE:
@@ -68,6 +68,15 @@ export default function authentication(state, action) {
             return update(state, {
                 check: {
                     status: { $set: 'FAILURE' }
+                }
+            });
+        case types.SIGN_OUT:
+            return update(state, {
+                status: {
+                    valid: { $set : false },
+                    isLoggedIn: { $set : false },
+                    currentUser: { $set : '' },
+                    token: { $set : '' }
                 }
             });
         default:

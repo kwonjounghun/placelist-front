@@ -2,7 +2,7 @@ import React from 'react';
 import Logo from 'components/atoms/Logo';
 import { NavLink } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({signout}) => {
     return (
         <nav>
             <div className="nav-wrapper">
@@ -10,7 +10,7 @@ const Header = () => {
                     <Logo />
                     <ul id="nav-mobile" className="right hide-on-med-and-down">
                         <li><NavLink to="/MyPage">마이 페이지</NavLink></li>
-                        <li><a href="#">로그아웃</a></li>
+                        <li><a href="#" onClick={signout}>로그아웃</a></li>
                     </ul>
                 </div>
 

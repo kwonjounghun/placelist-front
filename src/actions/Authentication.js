@@ -64,4 +64,16 @@ export function ckeckTokenFailure(){
     return {
         type: types.CHECK_TOKEN_FAILURE
     }
+};
+
+export function SignOutRequest(){
+    return (dispatch) => {
+        return Promise.resolve(dispatch(SignOut()));
+    };
+}
+
+export function SignOut(){
+    return {
+        type: types.SIGN_OUT
+    }
 }
