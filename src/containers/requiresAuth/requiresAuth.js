@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { push } from 'react-router-redux';
 
 import { checkTokenRequest } from 'actions/Authentication';
@@ -8,6 +8,9 @@ import { checkTokenRequest } from 'actions/Authentication';
 export default function requiresAuth(Component) {
   class AuthenticatedComponent extends React.Component {
     componentWillMount() {
+      if (this.props.userInfo.token !== "") {
+        document.cookie = 'userInfo=' + btoa(JSON.stringify(this.props.userInfo));
+      }
       const getCookie = (key) => {
         var value = "; " + document.cookie;
         var parts = value.split("; " + key + "=");
@@ -52,6 +55,7 @@ export default function requiresAuth(Component) {
 
   const mapStateToProps = (state) => {
     return {
+      userInfo: state.authentication.status,
       isLoggedIn: state.authentication.status.isLoggedIn,
       checkStatus: state.authentication.check.status,
       valid: state.authentication.status.valid

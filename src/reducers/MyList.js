@@ -5,7 +5,7 @@ const initialState = {
     getMyList: {
         status: 'INIT'
     },
-    MyList:[],
+    MyList:[]
 };
 
 export default function MyList(state, action) {

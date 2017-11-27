@@ -17,7 +17,7 @@ class App extends React.Component {
                     <Route path="/signup" component={RegisterPage} />
                     <Route path="/signin" component={RegisterPage} />
                     <Route exact path="/MyPage" component={requiresAuth(MyPage)}/>
-                    <Route exact path="/" component={requiresAuth(MyListPage)}/>
+                    <Route exact path="/:map?/:sigugun?/:category?" component={requiresAuth(MyListPage)}/>
                 </Switch>
             </ConnectedRouter>
         );
