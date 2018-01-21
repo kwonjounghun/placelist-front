@@ -94,5 +94,8 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "storybook": "^1.0.0"
   }
 }
